@@ -1,5 +1,5 @@
 from app.infrastructure.config import Base, engine
-from app.infrastructure.database.models import task, user, todo_list
+from app.infrastructure.database.models import task, todo_list
 from colorama import init, Fore
 
 def create_tables():

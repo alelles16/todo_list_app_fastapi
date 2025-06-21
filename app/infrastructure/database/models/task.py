@@ -13,11 +13,6 @@ class TaskModel(Base):
     priority = Column(String, default="normal")  # low, normal, high
     completed = Column(Boolean, default=False)
 
-    # Foreign key relationships
-    # The user assigned to the task
-    assigned_user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    assigned_user = relationship("UserModel", back_populates="tasks")
-
     # The todo list this task belongs to
     todo_list_id = Column(Integer, ForeignKey("todo_lists.id"), nullable=False)
     todo_list = relationship("TodoListModel", back_populates="tasks")
