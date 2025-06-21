@@ -3,7 +3,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-# ✅ Esto apunta directamente a /app/data (mapeado desde ./data)
 BASE_DIR = os.path.join(os.getcwd(), "data")
 os.makedirs(BASE_DIR, exist_ok=True)
 
