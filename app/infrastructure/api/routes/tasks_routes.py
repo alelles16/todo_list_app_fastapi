@@ -79,7 +79,7 @@ def update_task_status_route(
     task_id: int, status: TaskStatusUpdate, db: Session = Depends(get_db)
 ) -> TaskRead:
     repository = TaskRepositoryImpl(db)
-    task = update_task_status(repository, task_id, status)
+    task = update_task_status(repository, task_id, status.status)
     if not task:
         raise HTTPException(status_code=404, detail="Task not found")
     return TaskRead(**task.__dict__)

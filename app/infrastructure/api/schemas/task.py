@@ -4,7 +4,7 @@ from typing import Optional, List
 
 class TaskBase(BaseModel):
     title: str = Field(..., min_length=3, max_length=100)
-    description: Optional[str] = Field(None, min_length=10)
+    description: Optional[str] = Field(None, min_length=8)
     status: Optional[str] = Field(
         default="pending", pattern="^(pending|in_progress|done)$"
     )
@@ -17,7 +17,7 @@ class TaskCreate(TaskBase):
 
 class TaskUpdate(BaseModel):
     title: Optional[str] = Field(None, min_length=3, max_length=100)
-    description: Optional[str] = Field(None, min_length=10)
+    description: Optional[str] = Field(None, min_length=8)
     status: Optional[str] = Field(None, pattern="^(pending|in_progress|done)$")
     priority: Optional[str] = Field(None, pattern="^(low|normal|high)$")
     completed: Optional[bool] = None
