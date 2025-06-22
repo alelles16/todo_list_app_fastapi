@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Optional, List
 
 
 # Data model for tasks
@@ -30,5 +30,13 @@ class TaskRead(TaskBase):
     completed: bool
     todo_list_id: int
 
-    class Config:
-        orm_mode = True
+
+# Data model for updating task status
+class TaskStatusUpdate(BaseModel):
+    status: str = Field(..., pattern="^(pending|in_progress|done)$")
+
+
+# Data model for a list of tasks with completion percentage
+class TaskListWithCompletion(BaseModel):
+    tasks: List[TaskRead]
+    completion_percentage: float

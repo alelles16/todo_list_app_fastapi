@@ -21,10 +21,6 @@ class TodoListRead(BaseModel):
     title: str
     description: Optional[str]
 
-    class Config:
-        # Enable ORM mode to read data from ORM models
-        orm_mode = True
-
 
 # Allowed data when reading a todo list with its tasks
 class TodoListWithTasks(TodoListRead):

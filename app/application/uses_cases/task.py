@@ -28,10 +28,6 @@ def get_task(repository: TaskRepository, task_id: int) -> Optional[Task]:
     return repository.get_by_id(task_id)
 
 
-def get_tasks_by_list(repository: TaskRepository, todo_list_id: int) -> List[Task]:
-    return repository.get_all_by_todo_list(todo_list_id)
-
-
 def update_task(
     repository: TaskRepository,
     task_id: int,
@@ -58,3 +54,36 @@ def update_task(
 
 def delete_task(repository: TaskRepository, task_id: int) -> bool:
     return repository.delete(task_id)
+
+
+def update_task_status(
+    repository: TaskRepository,
+    task_id: int,
+    status: str,
+) -> Optional[Task]:
+    task = repository.get_by_id(task_id)
+    if not task:
+        return None
+    task.status = status
+    task.completed = True if status == "done" else False
+    return repository.update(task_id, task)
+
+
+def get_tasks_by_list(
+    repository: TaskRepository,
+    todo_list_id: int,
+    status: Optional[str] = None,
+    priority: Optional[str] = None,
+) -> tuple[List[Task], float]:
+    tasks = repository.get_all_by_todo_list(todo_list_id)
+
+    if status:
+        tasks = [task for task in tasks if task.status == status]
+    if priority:
+        tasks = [task for task in tasks if task.priority == priority]
+
+    total = len(tasks)
+    completed = sum(1 for task in tasks if task.status == "done" or task.completed)
+    completion_percentage = round((completed / total) * 100, 2) if total > 0 else 0.0
+
+    return tasks, completion_percentage
