@@ -30,7 +30,7 @@ This project is a simple **Todo List App** built with **FastAPI**, following **C
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/your-user/todo-list-fastapi.git
+git clone https://github.com/alelles16/todo-list-fastapi.git
 cd todo-list-fastapi
 ```
 
