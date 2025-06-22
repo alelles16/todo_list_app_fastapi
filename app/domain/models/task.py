@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 class Task:
     def __init__(
         self,
@@ -9,7 +10,7 @@ class Task:
         status: str,
         priority: str,
         completed: bool,
-        todo_list_id: int
+        todo_list_id: int,
     ):
         self.id = id
         self.title = title

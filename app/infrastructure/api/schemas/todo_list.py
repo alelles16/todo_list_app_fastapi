@@ -1,27 +1,23 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional, List
 from .task import TaskRead
 
 
-# Data allowed when creating a new todo list
 class TodoListCreate(BaseModel):
-    title: str
-    description: Optional[str] = None
+    title: str = Field(..., min_length=3, max_length=100)
+    description: Optional[str] = Field(None, min_length=10)
 
 
-# Data allowed when updating an existing todo list
 class TodoListUpdate(BaseModel):
-    title: Optional[str] = None
-    description: Optional[str] = None
+    title: Optional[str] = Field(None, min_length=3, max_length=100)
+    description: Optional[str] = Field(None, min_length=10)
 
 
-# Allowed data when reading a todo list
 class TodoListRead(BaseModel):
     id: int
     title: str
     description: Optional[str]
 
 
-# Allowed data when reading a todo list with its tasks
 class TodoListWithTasks(TodoListRead):
     tasks: List[TaskRead] = []

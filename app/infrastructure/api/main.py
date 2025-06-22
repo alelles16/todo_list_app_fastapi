@@ -13,6 +13,7 @@ app = FastAPI(
 app.include_router(todo_list_routes.router)
 app.include_router(tasks_routes.router)
 
+
 @app.get("/")
 def root():
     return {"message": "Todo List API is up"}

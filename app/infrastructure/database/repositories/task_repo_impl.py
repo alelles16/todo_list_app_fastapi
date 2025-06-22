@@ -17,7 +17,7 @@ class TaskRepositoryImpl(TaskRepository):
             status=model.status,
             priority=model.priority,
             completed=model.completed,
-            todo_list_id=model.todo_list_id
+            todo_list_id=model.todo_list_id,
         )
 
     def get_by_id(self, task_id: int) -> Optional[Task]:
@@ -25,7 +25,11 @@ class TaskRepositoryImpl(TaskRepository):
         return self._to_domain(task_model) if task_model else None
 
     def get_all_by_todo_list(self, todo_list_id: int) -> List[Task]:
-        tasks_model = self.db.query(TaskModel).filter(TaskModel.todo_list_id == todo_list_id).all()
+        tasks_model = (
+            self.db.query(TaskModel)
+            .filter(TaskModel.todo_list_id == todo_list_id)
+            .all()
+        )
         return [self._to_domain(task) for task in tasks_model]
 
     def create(self, task: Task) -> Task:
@@ -35,7 +39,7 @@ class TaskRepositoryImpl(TaskRepository):
             status=task.status,
             priority=task.priority,
             completed=task.completed,
-            todo_list_id=task.todo_list_id
+            todo_list_id=task.todo_list_id,
         )
         self.db.add(task_model)
         self.db.commit()

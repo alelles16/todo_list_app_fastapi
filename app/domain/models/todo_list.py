@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 class TodoList:
 
     def __init__(

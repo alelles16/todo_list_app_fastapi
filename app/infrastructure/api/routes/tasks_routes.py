@@ -2,8 +2,13 @@ from fastapi import APIRouter, Depends, HTTPException, status, Query
 from sqlalchemy.orm import Session
 from typing import Optional
 
-from app.infrastructure.api.schemas.task import (TaskCreate, TaskRead, TaskUpdate,
-                                                 TaskStatusUpdate, TaskListWithCompletion)
+from app.infrastructure.api.schemas.task import (
+    TaskCreate,
+    TaskRead,
+    TaskUpdate,
+    TaskStatusUpdate,
+    TaskListWithCompletion,
+)
 from app.infrastructure.database.repositories.task_repo_impl import TaskRepositoryImpl
 from app.infrastructure.config import get_db
 from app.application.uses_cases.task import (
@@ -28,7 +33,7 @@ def create_task_route(task: TaskCreate, db: Session = Depends(get_db)) -> TaskRe
         todo_list_id=task.todo_list_id,
         status=task.status,
         priority=task.priority,
-        completed=False
+        completed=False,
     )
     return TaskRead(**created.__dict__)
 
@@ -43,7 +48,9 @@ def get_task_route(task_id: int, db: Session = Depends(get_db)) -> TaskRead:
 
 
 @router.put("/{task_id}", response_model=TaskRead)
-def update_task_route(task_id: int, task: TaskUpdate, db: Session = Depends(get_db)) -> TaskRead:
+def update_task_route(
+    task_id: int, task: TaskUpdate, db: Session = Depends(get_db)
+) -> TaskRead:
     repository = TaskRepositoryImpl(db)
     updated = update_task(
         repository=repository,
@@ -68,7 +75,9 @@ def delete_task_route(task_id: int, db: Session = Depends(get_db)):
 
 
 @router.patch("/{task_id}/status", response_model=TaskRead)
-def update_task_status_route(task_id: int, status: TaskStatusUpdate, db: Session = Depends(get_db)) -> TaskRead:
+def update_task_status_route(
+    task_id: int, status: TaskStatusUpdate, db: Session = Depends(get_db)
+) -> TaskRead:
     repository = TaskRepositoryImpl(db)
     task = update_task_status(repository, task_id, status)
     if not task:
