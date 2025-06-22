@@ -163,8 +163,3 @@ tests/
 entrypoint.sh
 ```
 
----
-
-## 🧾 License
-
-MIT © Your Name
