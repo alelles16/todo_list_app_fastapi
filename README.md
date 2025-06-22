@@ -19,7 +19,7 @@ This project is a simple **Todo List App** built with **FastAPI**, following **C
 
 ## ⚙️ Requirements
 
-- Python 3.10+
+- Python 3.11+
 - Docker + Docker Compose
 - Poetry
 
