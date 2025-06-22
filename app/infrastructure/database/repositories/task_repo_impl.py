@@ -17,7 +17,6 @@ class TaskRepositoryImpl(TaskRepository):
             status=model.status,
             priority=model.priority,
             completed=model.completed,
-            assigned_user_id=model.assigned_user_id,
             todo_list_id=model.todo_list_id
         )
 
@@ -36,7 +35,6 @@ class TaskRepositoryImpl(TaskRepository):
             status=task.status,
             priority=task.priority,
             completed=task.completed,
-            assigned_user_id=task.assigned_user_id,
             todo_list_id=task.todo_list_id
         )
         self.db.add(task_model)
@@ -53,7 +51,6 @@ class TaskRepositoryImpl(TaskRepository):
         task_model.status = updated_task.status
         task_model.priority = updated_task.priority
         task_model.completed = updated_task.completed
-        task_model.assigned_user_id = updated_task.assigned_user_id
         task_model.todo_list_id = updated_task.todo_list_id
 
         self.db.commit()

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.infrastructure.api.routes import todo_list_routes
+from app.infrastructure.api.routes import todo_list_routes, tasks_routes
 
 
 app = FastAPI(
@@ -11,6 +11,7 @@ app = FastAPI(
 )
 
 app.include_router(todo_list_routes.router)
+app.include_router(tasks_routes.router)
 
 @app.get("/")
 def root():
