@@ -1,3 +1,5 @@
+import app.infrastructure.database.models
+
 from app.infrastructure.config import Base, engine
 from colorama import init, Fore
 
