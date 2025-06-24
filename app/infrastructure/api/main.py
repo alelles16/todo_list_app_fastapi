@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.infrastructure.api.routes import todo_list_routes, tasks_routes
+from app.infrastructure.api.routes import todo_list_routes, tasks_routes, auth_routes
 
 
 app = FastAPI(
@@ -12,6 +12,7 @@ app = FastAPI(
 
 app.include_router(todo_list_routes.router)
 app.include_router(tasks_routes.router)
+app.include_router(auth_routes.router)
 
 
 @app.get("/")

@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from app.infrastructure.config import Base, get_db
 from app.infrastructure.database.models.todo_list import TodoListModel  # noqa: F401
 from app.infrastructure.database.models.task import TaskModel  # noqa: F401
+from app.infrastructure.database.models.user import UserModel  # noqa: F401
 from fastapi.testclient import TestClient
 from app.infrastructure.api.main import app
 
